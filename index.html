@@ -6,7 +6,8 @@
     <title>IBO - Icon Builder for Odoo</title>
 
     <meta name="author" content="spilymp">
-    <meta name="description" content="An simple Icon Builder for Odoo (IBO), which provide the ability to create app icons in the style of the appicons of the ERP system Odoo.">
+    <meta name="description"
+        content="An simple Icon Builder for Odoo (IBO), which provide the ability to create app icons in the style of the appicons of the ERP system Odoo.">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -60,6 +61,26 @@
             document.getElementById("download").setAttribute("href", image);
         }
 
+        function populateIconSetWebsite() {
+            switch (document.getElementById('iconSet').value) {
+                case "Font Awesome 5 Brands":
+                    document.getElementById('iconSetWebsite').href = "https://fontawesome.com/icons?d=gallery&p=2&s=brands&m=free"
+                    break;
+                case "bootstrap-icons":
+                    document.getElementById('iconSetWebsite').href = "https://icons.getbootstrap.com/"
+                    break;
+                case "simple-line-icons":
+                    document.getElementById('iconSetWebsite').href = "https://simplelineicons.github.io/"
+                    break;
+                case "remixicon":
+                    document.getElementById('iconSetWebsite').href = "https://remixicon.com/"
+                    break;
+                default:
+                    document.getElementById('iconSetWebsite').href = "https://fontawesome.com/icons?d=gallery&p=2&s=solid&m=free"
+                    break;
+            }
+        }
+
     </script>
 
 </head>
@@ -100,12 +121,13 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="column column-center">
+                <div class="row icon-set-website">
+                    <div class="column column-center column-50">
                         <label for="iconSet">Icon Set</label>
                     </div>
-                    <div class="column">
-                        <select id="iconSet">
+
+                    <div class="column column-40">
+                        <select id="iconSet" onchange="populateIconSetWebsite()">
                             <option value="Font Awesome 5 Free">Font Awesome 5 Solid</option>
                             <option value="Font Awesome 5 Brands">Font Awesome 5 Brands</option>
                             <option value="bootstrap-icons">Bootstrap Icons</option>
@@ -113,6 +135,13 @@
                             <option value="remixicon">Remix Icon</option>
                         </select>
                     </div>
+
+                    <div class="column">
+                        <a href="https://fontawesome.com/icons?d=gallery&p=2&s=brands&m=free" id="iconSetWebsite" class="button button-outline" target="_blank">
+                            <i class="fas fa-globe-europe"></i>
+                        </a>
+                    </div>
+
                 </div>
 
                 <div class="row">
@@ -179,8 +208,10 @@
                     To set an icon you have to find and enter the corresponding css class.
                     Please check the corresponding page of the icon set for this purpose:
                 <ul>
-                    <li><a href="https://fontawesome.com/icons?d=gallery&p=2&s=solid&m=free">Font Awesome 5 Solid</a></li>
-                    <li><a href="https://fontawesome.com/icons?d=gallery&p=2&s=brands&m=free">Font Awesome 5 Brands</a></li>
+                    <li><a href="https://fontawesome.com/icons?d=gallery&p=2&s=solid&m=free">Font Awesome 5 Solid</a>
+                    </li>
+                    <li><a href="https://fontawesome.com/icons?d=gallery&p=2&s=brands&m=free">Font Awesome 5 Brands</a>
+                    </li>
                     <li><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
                     <li><a href="https://simplelineicons.github.io/">Simple Line Icons</a></li>
                     <li><a href="https://remixicon.com/">Remix Icon</a></li>
@@ -284,7 +315,8 @@ icon.draw("icon");
                             <td>icon_class</td>
                             <td>eg. "fas fa-address-card"</td>
                             <td>CSS class name of your symbol for the icon, the class will automatically try to finde
-                                the corresponding unicode. If an unicode (parameter "icon_text") is set the class will be ignored.</td>
+                                the corresponding unicode. If an unicode (parameter "icon_text") is set the class will
+                                be ignored.</td>
                         </tr>
                         <tr>
                             <td>icon_text</td>
